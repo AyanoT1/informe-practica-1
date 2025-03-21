@@ -1,10 +1,16 @@
 #import "conf.typ": conf, guia, pronombre
 #let mostrar_guias = true
 #show: conf.with(
-  titulo: "El Título de mi práctica",
-  autor: (nombre: "María Echón", pronombre: pronombre.elle),
-  supervisor: (nombre: "María Gómez", pronombre: pronombre.ella),
+  titulo: "Practicante Desarrollador Web - Evol Services S.A.",
+  autor: (nombre: "Sergio Daniel Ignacio Romero Véliz", pronombre: pronombre.el),
+  supervisor: (nombre: "Edison Delgado", pronombre: pronombre.el),
   espaciado_titulo: 2fr,
+  correo: "sergioromeroiv@gmail.com",
+  telefono: "+56 9 5681 4697",
+  empresa: "Evol Services S.A.",
+  periodo: "Enero - Febrero 2025",
+  correo-supervisor: "edison.delgado@evol.energy",
+  telefono-supervisor: "+56 9 6593 8746"
 )
 
 #guia(visible: mostrar_guias)[Se debe quitar todas las guías (estas cajas grises) antes de entregar el documento.
@@ -50,6 +56,12 @@ El resumen debe contener lo esencial de cada sección del informe.
 - Se señala en qué empresa u organización realizaron las labores (se incluyen datos que no requieren de resguardo de confidencialidad por parte del/la estudiante).
 
 (extensión sugerida: 1 página)]
+
+Evol Services S.A., anteriormente llamada Ecom Energía es una empresa de comercialización y administración de contratos de energía, adquirida en 2022 por el holding de Empresas Lipigas.
+
+En Departamento de Desarrollo y Tecnología de Evol se realizan labores de mantención y desarrollo de nuevas funcionalidades del sistema que utiliza la compañía. La aplicación web que utiliza Evol Services para gestionar sus clientes y labores empresariales se llama Emer y actualmente está en su segunda iteración. El backend es un projecto Maven modular escrito en Java 8, utilizando el framework Spring; el frontend es una aplicación de React (TypeScript) + Vite,  utilizando Axios como cliente HTTP y Bootstrap como framework CSS
+
+
 
 = Descripción del problema
 

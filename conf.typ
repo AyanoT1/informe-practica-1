@@ -131,8 +131,8 @@
   set par(
     justify: true,
     first-line-indent: 15pt,
+    spacing: 2em
   ) // Formato de párrafos
-  show par: set block(spacing: 2em) // Espacio entre párrafos
   set cite(style: "council-of-science-editors") // esto deja las citas contiguas como [1, 2] o [1-3]
   pagebreak(weak: true) // Salto de página
   counter(page).update(1) // Reestablecer el contador de páginas
@@ -140,22 +140,14 @@
   let numbering-indent = 2em
   let page-num-indent = 1.2em
   show bibliography: set heading(numbering: "1.")
-  show selector(outline.entry): it => {
-    let num = if it.body.has("children") [#it.body.children.first()] else []
-    box(width: numbering-indent, num)
-    if it.body.has("children") [
-      #link(it.element.location())[#for i in it.body.children.slice(1) {i}]
-    ] else [#link(it.element.location())[ #it.element.body]]
-    box(width: 1fr, repeat[.])
-    box(width: page-num-indent, align(right, it.page))
-  }
+
   
   show selector(outline.entry.where(level: 1)): strong // Negrita para los títulos de nivel 1
     
   [ \ ]
   outline(
     depth: 2,
-    indent: none,
+    indent: 0em,
   )
 
   show heading: it => {
