@@ -41,7 +41,6 @@ En las guías de cada sección se mostrará la información de las páginas suge
 Se recomienda que el reporte de actividades se redacte en tercera persona.
 ]
 
-
 = Resumen
 
 #guia(visible: mostrar_guias)[En el resumen deben enunciarse los temas principales trabajados, problema, solución, reflexión y conclusiones sobre la realización de la práctica.
@@ -57,10 +56,21 @@ El resumen debe contener lo esencial de cada sección del informe.
 
 (extensión sugerida: 1 página)]
 
-Evol Services S.A., anteriormente llamada Ecom Energía es una empresa de comercialización y administración de contratos de energía, adquirida en 2022 por el holding de Empresas Lipigas.
+#pagebreak()
 
-En Departamento de Desarrollo y Tecnología de Evol se realizan labores de mantención y desarrollo de nuevas funcionalidades del sistema que utiliza la compañía. La aplicación web que utiliza Evol Services para gestionar sus clientes y labores empresariales se llama Emer y actualmente está en su segunda iteración. El backend es un projecto Maven modular escrito en Java 8, utilizando el framework Spring; el frontend es una aplicación de React (TypeScript) + Vite,  utilizando Axios como cliente HTTP y Bootstrap como framework CSS
+Evol Services S.A., anteriormente llamada Ecom Energía es una empresa de comercialización y administración de contratos de energía, adquirida en 2022 por el holding Empresas Lipigas.
 
+En el departamento de Desarrollo y Tecnología de Evol se realizan labores de mantención y desarrollo de nuevas funcionalidades del sistema que utiliza la compañía. El sistema se compone de varios servicios modularizados para gestionar la lógica de negocio y facilitar el trabajo a los otros departamentos de la empresa, principalmente a Gestión de Contratos Energéticos, Riesgo y Regulación y Atención al Cliente.  
+
+El pilar de este sistema es una aplicación web (EMER) que gestoina la mayoría de la lógica de negocio de Evol. Desarrollada inicialmente por Altiuz (ahora llamada Atuz), era en un principio un monolito hecho con Java 8, Spring y AngularJS, se encarga de gestionar clientes, contratos, medidores energéticos, mediciones y lo más importante, envío por email de reportes mensuales para cada cliente, detallado su consumo, ahorro, incidencias, etc.
+
+Con el crecimiento de la empresa y la evolución de sus necesidades tecnológicas, eventualmente la responsabilidad del mantenimiento y desarrollo del EMER fue transferida desde Altiuz hacia el equipo interno de Evol Services. Esta transición permitió a la empresa tener mayor control sobre su infraestructura tecnológica y adaptarla más ágilmente a los cambiantes requerimientos del negocio. El equipo de desarrollo de Evol mantuvo la base del backend en Java con Spring, pero tomó la decisión estratégica de modernizar el frontend, migrando de AngularJS a una aplicación separada desarrollada con React y Vite, dando origen a lo que hoy se conoce como EMER 2.0.
+
+El proyecto en Java con Spring, ahora dedicado al backend, está estructurado en distintos módulos (Restful, Server, DOM y Backend) que han permitido la escalabilidad y evolución de la lógica empresarial. En cuanto al frontend del EMER 2.0, donde se enfocó mi práctica profesional, es un proyecto desarrollado con React que utiliza Vite como herramienta de compilación y servidor de desarrollo, TypeScript para tipado estático, tests E2E (end to end) implementados en Cypress, Axios como cliente HTTP y Bootstrap como framework CSS. Complementariamente, el ecosistema tecnológico de Evol incluye otros componentes como bots lectores de facturas energéticas que automatizan la carga de valores a la base de datos relacional PostgreSQL.
+
+Actualmente, el departamento de Desarrollo y Tecnología está impulsando una migración estratégica del backend hacia un modelo serverless en AWS, contemplando también la transición de PostgreSQL a DynamoDB, con el objetivo de optimizar recursos y mejorar la escalabilidad del sistema.
+
+Este contexto tecnológico en evolución constituyó el escenario donde desarrollé mi práctica profesional, participando activamente en el desarrollo del frontend y contribuyendo a la modernización de las soluciones que son fundamentales para la operación de Evol Services S.A.
 
 
 = Descripción del problema
