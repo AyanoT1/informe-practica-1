@@ -81,7 +81,13 @@ El proyecto en Java con Spring, ahora dedicado al backend, está estructurado en
 (extensión sugerida: 0.5 a 1 página)
 ]
 
-Al inicio de la práctica, en el frontend, el problema principal que tenía el proyecto era que para el manejo de estados se utilizaba la Context API
+Al comenzar la práctica, el frontend en React utilizaba mayoritariamente la Context API de React, con una arquitectura compleja basada en múltiples Providers, Contexts, contextTypes, useProvider hooks y barrel files para manejar la lógica y los datos provenientes del backend. Aunque esta infraestructura permitía que la aplicación funcionara correctamente en ese momento, presentaba limitaciones en cuanto a extensibilidad, legibilidad y mantenibilidad, lo que dificultaba el desarrollo de nuevas funcionalidades y la corrección de errores existentes o introducidos por actualizaciones de dependencias. Por esta razón, el equipo decidió migrar progresivamente a un modelo de gestión de estado centralizado con Redux, que resultaba más flexible y mantenible para este proyecto en particular.
+
+Durante las primeras seis semanas, mi tarea principal fue avanzar con esta migración, llevándola del 30-40% de completitud al 90-95%, minimizando el uso de la Context API y garantizando una implementación más uniforme en los componentes del proyecto. Debido a la existencia de componentes legados extensos y altamente complejos, la migración completa no era factible dentro del tiempo disponible. El esfuerzo requerido para migrar estos componentes no justificaba los beneficios obtenidos, por lo que se optó por mantenerlos intactos. Dado que estos componentes tenían una estructura frágil, su modificación podría haber introducido errores difíciles de detectar y corregir, lo que hacía inviable su migración dentro del tiempo disponible.
+
+En las últimas semanas de mi práctica, me enfoqué en desarrollar nuevas interfaces para una funcionalidad de la aplicación relacionada con un nuevo tipo de contrato que la empresa iba a ofrecer a sus clientes. A partir de un documento extensivo de requerimientos y un mockup, desarrollé las interfaces requeridas utilizando los componentes reutilizables del proyecto y siguiendo la estructura de manejo de estados con Redux. Este desarrollo permitió que semanas después, una vez lista la lógica de negocio en el backend y la base de datos, el frontend estuviera preparado para una integración fluida, reduciendo la carga de trabajo de los desarrolladores encargados de esta nueva funcionalidad, que ya llevaba cinco meses en desarrollo.
+
+Además, a lo largo de toda la práctica profesional, corregí y mejoré componentes del proyecto, solucioné bugs que llevaban años sin ser atendidos y optimicé la detección de errores en el código. Para ello, implementé un wrapper del compilador de TypeScript que realizaba un análisis de tipos en todo el proyecto antes de hacer push al repositorio remoto. Esta mejora resultó fundamental, ya que anteriormente el proyecto había experimentado problemas por importaciones de componentes fallidas que, debido a las optimizaciones del proceso de compilación de Vite, no eran detectadas hasta que el código ya estaba integrado en la rama de desarrollo.
 
 = Objetivos
 
@@ -105,6 +111,8 @@ El objetivo debería ser específico, medible, alcanzable, relevante al problema
 
 ('Hacer la práctica' no es una repuesta válida. :\))]
 
+Participar en el desarrollo y mantenimiento del sistema EMER en Evol Services como desarrollador fullstack, contribuyendo a la mejora del software mediante la optimización del código, la corrección de errores y la implementación de nuevas funcionalidades. Aunque la práctica abarcaba tanto frontend como backend, el enfoque principal estuvo en la refactorización del frontend, migrando la gestión del estado de Context API a Redux para mejorar la mantenibilidad y escalabilidad del proyecto. Además, se desarrollaron nuevas interfaces para la implementación de un nuevo tipo de contrato y se optimizó la detección de errores en el código, facilitando el trabajo del equipo de desarrollo.
+
 == Objetivos Específicos
 
 #guia(visible: mostrar_guias)[
@@ -116,8 +124,11 @@ No se debería escribir más de un párrafo por hito.
 
 Los objetivos específicos deberían \"sumar\" al objetivo general.]
 
-+ ...
-+ ...
++ Analizar los desarrollos previos del frontend para entender cómo estaba funcionando y qué cosas debían cambiar
++ Corregir bugs en los desarrollos legados en parches o en las nuevas versiones de los componentes
++ Mejorar la detección de bugs en fase de desarrollo del repositorio del frontend
++ Refactorizar módulos obsoletos y/o defectuosos aplicando el nuevo estándar del equipo par desarrollar en el front
++ Crear interfaces para nuevas funcionalidades de la aplicación
 
 = Metodología
 
@@ -129,6 +140,17 @@ Describir la metodología:
 - Explicar cómo se puede evaluar la calidad del resultado obtenido en esta práctica.
 
 (extensión sugerida: 0.5 a 1 página)]
+
+La metodología de trabajo utilizada para completar los objetivos de la práctica fue la siguiente:
+
+El equipo seguía una metodología de Daily SCRUM, que se basaba en reuniones diarias cortas (10 a 20 minutos), fuese por Microsoft Teams o en persona, para discutir los avances, compromisos diarios y dificultades en el trabajo de cada uno. Esta forma de trabajar impulsa fragmentar las tareas más generales y complejas en tareas pequeñas, realizables y medibles para cada día. Esta forma de organizar los desarrollos era útil siempre y cuando efectivamente las tareas se podían fragmentar y que no se repitiesen por más de 1 día, lo que no siempre era el caso. De todas formas es una buena metodología para no perder el hilo y la percepción del tiempo en cuanto a los objetivos más generales y poder hacer ajustes a los desarrollos por faltas de tiempo, lo que fue muchas veces necesario por aparición de bugs, vacaciones de miembros, enfermedades u otras incidencias.
+
+La metodología ocupada para trabajar específicamente en la refactorización del frontend fue, migrar por partes la aplicación, ejemplo, el menú de administración -> menú de cargas. Cada menú tenía entre 5 y 8 módulos asociados, los cuales eran en su mayoría páginas relacionadas a CRUD, create, read/retrieve, update y delete, lo que son mantenedores de las entidades de la base de datos. Para cada módulo, leía tanto su versión obsoleta como otros módulos ya migrados que eran similares, luego se reescribían los componentes, se probaba manualmente el funcionamiento y el manejo de estado, luego se automatizaba el proceso con Cypress y al terminar y pasar todos los tests existentes, se creaba un Pull Request hacia la rama de desarrollo.
+
+Los tests en Cypress se hacían al final dado que era una tarea intensiva para la computadora de la empresa que se me fue entregada, por lo que se testeaba exhaustivamente usando la aplicación en el servidor de desarrollo local y luego se escribían tests automatizados, que finalmente tenían la utilidad de romperse en caso de que un cambio externo modificara el funcionamiento de la página.
+
+En cuanto a los desarrollos de nuevas interfaces, se siguió una metodología similar, aplicando el mismo estándar de desarrollo, se utilizaban los componentes específicos que ocupaba el proyecto con data estática en el front, pero desarrollando la interfaz anticipando las tareas de integración con el backend, para minimizar los cambios y correcciones del código de la interfaz.
+
 
 = Descripción de la Solución
 
