@@ -1,5 +1,5 @@
 #import "conf.typ": conf, guia, pronombre
-#let mostrar_guias = true
+#let mostrar_guias = false
 #show: conf.with(
   titulo: "Practicante Desarrollador Web - Evol Services S.A.",
   autor: (nombre: "Sergio Daniel Ignacio Romero Véliz", pronombre: pronombre.el),
@@ -48,6 +48,14 @@ El resumen debe contener lo esencial de cada sección del informe.
 
 (extensión sugerida: 0.5 páginas)]
 
+En el presente informe se describe el proceso de práctica en Evol Services, una empresa consultora y de gestión de contratos energéticos, donde se trabajó en la refactorización de un proyecto en React + TypeScript de 3 años de desarrollo y \~500k líneas de código, con una grán parte de sus componentes con bugs y con malas prácticas de código. 
+
+Se discute la metodología para afrontar el problema, el trabajo con el equipo de desarrolladores de la empresa, la propuesta de solución y las complicaciónes que se tuvo durante el proceso de práctica. El cómo se llegó a la completitud de la refactorización, mejoras al proceso de testeo y building de la aplicación, nuevas interfaces para la aplicación web de la empresa.
+
+Se realiza una reflexión ética profesional sobre el trabajo realizado y la confianza puesta en la relación practicante/empresa y los dilemas encontrados durante el proceso.
+
+EL informe finaliza con una conclusión y recuento sobre los objetivos y su nivel de logro, así como una conclusión final sobre el proceso de práctica.
+
 = Introducción
 
 #guia(visible: mostrar_guias)[Parte inicial de un texto en donde se informa acerca del contenido del informe.
@@ -55,8 +63,6 @@ El resumen debe contener lo esencial de cada sección del informe.
 - Se señala en qué empresa u organización realizaron las labores (se incluyen datos que no requieren de resguardo de confidencialidad por parte del/la estudiante).
 
 (extensión sugerida: 1 página)]
-
-#pagebreak()
 
 Evol Services S.A., anteriormente llamada Ecom Energía, es una empresa de comercialización y administración de contratos de energía, adquirida en 2022 por el holding Empresas Lipigas.
 
@@ -297,14 +303,10 @@ En esta sección se deberá retomar y confirmar de manera sintética los aspecto
 
 (extensión sugerida: 0.5 a 1 página)]
 
-= Anexos
+Recapitulando, el objetivo específico principal propuesto de la práctica: Refactorizar módulos obsoletos del frontend para eliminar el uso de Context API en el proyecto, fue completado con éxito dentro del periodo de práctica, quedaron residuos de uso de Context API asociados a componentes demasiado complejos para reescribir en el periodo de práctica, pero más de un 90% del proyecto quedó implementado usando React Redux. También se presentó la oportunidad de crear nuevos componentes para la empresa, que fue un logro extra de la práctica. Durante todo el proceso se logró entender mejor lo que es trabajar en un equipo de profesionales, organizar un proyecto, cómo convivir y pedir ayuda en el trabajo de desarrollo de software.
 
-#guia(visible: mostrar_guias)[
-En esta sección se puede incluir material de adicional de apoyo al informe, por
-ejemplo, capturas de pantalla, código fuente, o la descripción de casos de uso.
-Este acápite es optativo.
-]
+Por otro lado no se logró participar en otras áreas del desarrollo de software como el backend, computación en la nube o la toma de requerimientos, dado el acotado tiempo de práctica y la gran cantidad de trabajo que requería el front. A cambio de esto, se ganó un entendimiento superior sobre el desarrollo de interfaces de usuario y manejo de herramientas y lenguajes como TypeScript y Cypress.
 
-@CorlessJK97 @NewmanT42
+Algunos puntos de mejora de la solución creada pueden ser el manejo más idiomático de ciertos casos en el frontend con TypeScript, como el manejo de posibles valores nulos en formularios cuando se llenan con datos provenientes de la API. Pues la solución creada mantuvo un estilo agnóstico de programación, dada la poca familiarizad y experiencia con el lenguaje, por lo que para un experto en TypeScript, algunas implementaciones podrán parecer torpes y que exista una mejor forma de hacerlo según la documentación o experiencia con TypeScript. Por otro lado, el testing con Cypress se podría mejorar con un dump de la base de datos específico para pruebas y correr los tests en un servidor aparte para minimizar errores asociados al rendimiento de la computadora en donde se ejecutan estos test y modificiaciones en los datos con el tiempo, un set de datos que no cambien en el tiempo abre las puertas para un testing más profundo de las funcionalidades y realizarlo de manera automática. 
 
-#bibliography("bibliografia.yml", title: "Referencias")
+Finalmente se agradece a Evol Services, Edison Delgado y a todo el equipo de desarrollo y tecnología por la oportunidad de aprender y experimentar el desarrollo profesional en un entorno real pero seguro como practicante.
