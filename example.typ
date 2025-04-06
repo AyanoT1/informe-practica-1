@@ -1,52 +1,14 @@
-#import "conf.typ": conf, guia, pronombre
-#let mostrar_guias = false
-#show: conf.with(
-  titulo: "Practicante Desarrollador Web - Evol Services S.A.",
-  autor: (nombre: "Sergio Daniel Ignacio Romero Véliz", pronombre: pronombre.el),
-  supervisor: (nombre: "Edison Delgado", pronombre: pronombre.el),
-  espaciado_titulo: 2fr,
-  correo: "sergioromeroiv@gmail.com",
-  telefono: "+56 9 5681 4697",
-  empresa: "Evol Services S.A.",
-  periodo: "Enero - Febrero 2025",
-  correo-supervisor: "edison.delgado@evol.energy",
-  telefono-supervisor: "+56 9 6593 8746"
-)
+#import "conf.typ": conf
+#import "metadata.typ": example-metadata
 
-#guia(visible: mostrar_guias)[Se debe quitar todas las guías (estas cajas grises) antes de entregar el documento.
+// Aquí se importan las guías para ayudar a escribir.
+// Se pueden desactivar cambiando el valor de la variable `mostrar_guias` a `false`.
+#import "guias.typ": *
+#let mostrar_guias = true
 
-Para ello, se debe cambiar el valor de la variable `mostrar_guias` a `false` en la segunda línea del archivo.
-
-Además, hay que reemplazar los datos de la portada en los parámetros de la función `conf` en la línea 3 del archivo.
-
-Los parámetros que acepta la función `conf` son:
-- título: El título de la práctica.
-- autor: Un diccionario con campos `nombre` y `pronombre`. Para los pronombres, importar el diccionario `pronombre` desde `conf.typ`. Los valores disponibles son `pronombre.el`, `pronombre.ella` y `pronombre.elle`.
-- practica: 1 o 2 dependiendo de si es la primera o segunda práctica profesional.
-- codigo: CC4901 para práctica I, CC5901 para práctica II.
-- ingenieria: Nombre de la carrera.
-- correo: Correo de autor.
-- telefono: Número de teléfono del autor.
-- periodo: Período en que se realizó la práctica. Por ejemplo: 'Diciembre 2022 - Enero 2023'.
-- empresa: Nombre de la empresa.
-- supervisor: Información del supervisor. Es un diccionario con campos `nombre` y `pronombre`.
-- correo-supervisor: Correo de supervisor.
-- telefono-supervisor: Número de teléfono del supervisor.
-- fecha: Fecha de entrega. Si no se especifica, se usa la fecha actual.
-- espaciado_titulo: Espaciado extra antes del título y al rededor de autor. Por defecto es `1fr`. Se puede usar `2fr` para un espaciado doble, `3fr` para un espaciado triple, etc.
-
-Como aproximación, se espera que el informe tenga de 8 a 14 páginas.
-En las guías de cada sección se mostrará la información de las páginas sugeridas. No olvidar que es una sugerencia.
-
-Se recomienda que el reporte de actividades se redacte en tercera persona.
-]
+#show: conf.with(metadata: example-metadata)
 
 = Resumen
-
-#guia(visible: mostrar_guias)[En el resumen deben enunciarse los temas principales trabajados, problema, solución, reflexión y conclusiones sobre la realización de la práctica.
-El resumen debe contener lo esencial de cada sección del informe.
-
-(extensión sugerida: 0.5 páginas)]
 
 En el presente informe se describe el proceso de práctica en Evol Services, una empresa de consultoría y de gestión de contratos energéticos, donde el practicante participó en la refactorización de un proyecto en React + TypeScript de 3 años de desarrollo y \~500k líneas de código, con una gran parte de sus componentes con bugs y malas prácticas de código.
 
@@ -57,12 +19,6 @@ Se realiza una reflexión sobre la ética profesional en el trabajo realizado y 
 El informe concluye que los objetivos propuestos inicialmente en el plan de práctica fueron parcialmente completados, dado que el trabajo se enfocó principalmente en el desarrollo en el frontend, llegando a un aprendizaje mucho más profundo en este sector.
 
 = Introducción
-
-#guia(visible: mostrar_guias)[Parte inicial de un texto en donde se informa acerca del contenido del informe.
-- Se contextualiza al lector con los antecedentes generales acerca del trabajo de práctica realizado, y que será descrito en los otros capítulos del informe
-- Se señala en qué empresa u organización realizaron las labores (se incluyen datos que no requieren de resguardo de confidencialidad por parte del/la estudiante).
-
-(extensión sugerida: 1 página)]
 
 Evol Services S.A., anteriormente llamada Ecom Energía, es una empresa de comercialización y administración de contratos de energía, adquirida en 2022 por el holding Empresas Lipigas.
 
@@ -78,14 +34,6 @@ El proyecto en Java con Spring, ahora dedicado al backend, está estructurado en
 
 = Descripción del problema
 
-#guia(visible: mostrar_guias)[Requerimiento o necesidad a resolver durante el trabajo de práctica:
-- Describir el problema específico (u oportunidad desaprovechada), y las consecuencias de éste para la empresa u organización.
-- Explicar qué tan crítico y urgente era para la organización resolver dicho problema.
-- Además, se deben plantear los desafíos técnicos y organizacionales que representó la labor desarrollada para resolver dicho problema o necesidad.
-
-(extensión sugerida: 0.5 a 1 página)
-]
-
 Al comenzar el proceso de práctica, el frontend en React utilizaba mayoritariamente la Context API de React, con una arquitectura compleja basada en múltiples Providers, Contexts, contextTypes, useProvider hooks y barrel files para manejar la lógica y los datos provenientes del backend. Aunque esta infraestructura permitía que la aplicación funcionara correctamente en el momento, presentaba limitaciones en cuanto a extensibilidad, legibilidad y mantenibilidad, lo que dificultaba el desarrollo de nuevas funcionalidades y la corrección de errores existentes o introducidos por actualizaciones de dependencias. Por esta razón, el equipo decidió migrar progresivamente a un modelo de gestión de estado centralizado con Redux, que resultaba más flexible y mantenible para este proyecto en particular.
 
 Durante las seis primeras semanas, la tarea principal del practicante fue avanzar con esta migración, llevándola del 40% de completitud al 90%, minimizando el uso de la Context API y garantizando una implementación más uniforme en los componentes del proyecto. Debido a la existencia de componentes legados extensos y altamente complejos, la migración completa no era factible dentro del tiempo disponible. El esfuerzo requerido para migrar estos componentes no justificaba los beneficios obtenidos, por lo que se optó por hacer correcciones puntuales cuando fuese requerido. Dado que estos componentes tenían una estructura frágil, su modificación o reescritura tenía altas probabilidades de introducir errores difíciles de detectar y corregir, lo que hacía inviable su migración.
@@ -96,65 +44,30 @@ Además, a lo largo de todo el proceso, se realizaron correciones y mejoras en c
 
 = Objetivos
 
-#guia(visible: mostrar_guias)[Determinar el objetivo general y los objetivos específicos de la práctica; para ello es preciso considerar lo siguiente:
-- El objetivo es una declaración sobre una meta o propósito a cumplir.
-- Se debe plantear un objetivo general y los objetivos específicos de cada práctica. Estos se enuncian en infinitivo: por ejemplo, analizar, describir, aplicar.
-
-Es preciso señalar que los objetivos no son tareas a desarrollar. Cada objetivo
-específico aporta al logro del objetivo general.
-
-(No hay que poner texto acá. Se puede empezar directamente con el objetivo general.)
-
-(extensión sugerida: 0.5 páginas)]
-
 == Objetivo General
-
-#guia(visible: mostrar_guias)[
-Un _resumen conciso_ (no más de un párrafo) de la meta principal del trabajo, es decir, qué quieres lograr con el trabajo (o qué significa \"éxito\" en el contexto del trabajo).
-
-El objetivo debería ser específico, medible, alcanzable, relevante al problema, y acotado en tiempo.
-
-('Hacer la práctica' no es una repuesta válida. :\))]
 
 El objetivo general de este proceso de práctica fue que el estudiante participase en el desarrollo y mantenimiento del sistema EMER en Evol Services como desarrollador fullstack, contribuyendo a la mejora del software mediante la optimización del código, la corrección de errores y la implementación de nuevas funcionalidades. 
 
 == Objetivos Específicos
 
-#guia(visible: mostrar_guias)[
-Una _lista_ de los hitos principales que se quieren lograr para (intentar) cumplir con el objetivo general. Divide el objetivo general en varios hitos que formarán las etapas del trabajo.
-
-Cada objetivo debería ser específico, medible, alcanzable, relevante al problema, y acotado en tiempo.
-
-No se debería escribir más de un párrafo por hito.
-
-Los objetivos específicos deberían \"sumar\" al objetivo general.]
-
-+ Analizar los desarrollos previos del frontend para entender cómo estaba funcionando y qué cosas debían cambiar
-+ Corregir bugs en los desarrollos legados en parches o en las nuevas versiones de los componentes
-+ Mejorar la detección de bugs en fase de desarrollo del repositorio del frontend
-+ Refactorizar módulos obsoletos y/o defectuosos aplicando el nuevo estándar del equipo para desarrollar en el front
-+ Crear interfaces para nuevas funcionalidades de la aplicación
+- Analizar los desarrollos previos del frontend para entender cómo estaba funcionando y qué cosas debían cambiar
+- Corregir bugs en los desarrollos legados en parches o en las nuevas versiones de los componentes
+- Mejorar la detección de bugs en fase de desarrollo del repositorio del frontend
+- Refactorizar módulos obsoletos y/o defectuosos aplicando el nuevo estándar del equipo para desarrollar en el front
+- Crear interfaces para nuevas funcionalidades de la aplicación
 
 = Metodología
-
-#guia(visible: mostrar_guias)[
-Describir la metodología:
-- Se deben describir los pasos/etapas seguidos en el trabajo encomendado (tareas a realizar y su secuencia).
-- Explicar si la metodología fue dada al/la estudiante por su supervisor/a o jefe directo o fue una propuesta propia (justificar).
-- Explicar si la metodología fue la apropiada para alcanzar los objetivos planteados.
-- Explicar cómo se puede evaluar la calidad del resultado obtenido en esta práctica.
-
-(extensión sugerida: 0.5 a 1 página)]
 
 La metodología de trabajo utilizada para completar los objetivos de la práctica fue la siguiente:
 
 El equipo seguía una metodología de Daily SCRUM, que se basaba en reuniones diarias cortas (10 a 20 minutos), fuera por Microsoft Teams o en persona, para discutir los avances, compromisos diarios y dificultades en el trabajo de cada uno. Esta forma de trabajar impulsa fragmentar las tareas más generales y complejas en tareas pequeñas, realizables y medibles para cada día. Este sistema funciona bien siempre y cuando las tareas se podían fragmentar efectivamente y que no se repitieran por más de 1 día, lo que no siempre era el caso. El estudiante considera que esta metodología fue útil para no perder el hilo y la percepción del tiempo en cuanto a los objetivos más generales y poder hacer ajustes a los desarrollos por faltas de tiempo, lo que fue muchas veces necesario por aparición de bugs, vacaciones de miembros, enfermedades u otras incidencias.
 
 En cuanto a la metodología para ocupar GIT, era la siguiente:
-1. La rama main (producción) era intocable, sólo el coordinador de Desarrollo y Tecnología (supervisor de prácica) tenía permiso de hacer cambios a main mediante pull requests.
-1. La rama desarrollo siempre debía estar funcionando correctamente, era el punto común de encuentro entre desarrolladores.
-1. Para introducir cambios, debía crearse una nueva rama salida de desarrollo. Al terminar se realizaba un Pull Request detallando todos los cambios y con la checklist pre-revisión completada (haber realizado una revisión propia del código, probar la aplicación en local y crear scripts SQL en caso de ser necesario). Luego, el Pull Request era revisado y mergeado por el coordinador de Desarrollo y Tecnología a la rama de desarrollo.
-1. Cada Pull Request debía introudcir un cambio discreto hacia la rama de desarrollo, como una nueva funcionalidad o una corrección específica. Esto era para controlar los posibles efectos secundarios de los cambios y mantener un historial claro de que cambios se han hecho.
+
++ La rama main (producción) era intocable, sólo el coordinador de Desarrollo y Tecnología (supervisor de prácica) tenía permiso de hacer cambios a main mediante pull requests.
++ La rama desarrollo siempre debía estar funcionando correctamente, era el punto común de encuentro entre desarrolladores.
++ Para introducir cambios, debía crearse una nueva rama salida de desarrollo. Al terminar se realizaba un Pull Request detallando todos los cambios y con la checklist pre-revisión completada (haber realizado una revisión propia del código, probar la aplicación en local y crear scripts SQL en caso de ser necesario). Luego, el Pull Request era revisado y mergeado por el coordinador de Desarrollo y Tecnología a la rama de desarrollo.
++ Cada Pull Request debía introudcir un cambio discreto hacia la rama de desarrollo, como una nueva funcionalidad o una corrección específica. Esto era para controlar los posibles efectos secundarios de los cambios y mantener un historial claro de que cambios se han hecho.
 
 La metodología ocupada para trabajar específicamente en la refactorización del frontend fue migrar por partes la aplicación, por ejemplo, el menú de administración -> menú de cargas. Cada menú tenía entre 5 y 8 módulos asociados, los cuales eran en su mayoría páginas relacionadas a CRUD (create, read/retrieve, update y delete), las que son mantenedores de las entidades de la base de datos. Para cada módulo, el estudiante leía tanto su versión obsoleta como otros módulos ya migrados que eran similares para luego reescrir los componentes. Se probaba manualmente el funcionamiento y el manejo de estado y después se automatizaba el proceso con Cypress. Al terminar y pasar todos los tests existentes, se creaba un Pull Request hacia la rama de desarrollo.
 
@@ -164,16 +77,6 @@ En cuanto a los desarrollos de nuevas interfaces, se siguió una metodología si
 
 
 = Descripción de la Solución
-
-#guia(visible: mostrar_guias)[Describir la solución obtenida, en términos de su diseño (si es un producto) y/o en términos de los resultados obtenidos (si es un estudio). Presentar la solución señalando sus fundamentos teórico-técnico.
-- Describir la estructura de la solución (estructura macro).
-- Describir los componentes de la solución (estructura detallada).
-- Describir el comportamiento de la solución (dinámica), cuando corresponda.
-- Indicar qué tecnologías se utilizaron y justificar su elección.
-- Describir los resultados intermedios y finales obtenidos.
-- Indicar las fortalezas y debilidades de la solución.
-
-(extensión sugerida: 3 a 5 páginas)]
 
 La refactorización propuesta para el frontend que se había puesto en marcha desde antes del proceso de práctica fue cambiar la estructura de cada módulo. La idea era pasar desde tener sólo un directorio de componentes y providers a separar cada responsabilidad en un directorio distinto. Los componentes debían encargarse únicamente de definir el formato de cada pantalla, features se encargaba de manejar el estado de Redux, definiendo las funciones requeridas para usar la libería, services guardaba las llamadas HTTP hacia el backend de manera localizada, dado que anteriormente se guardaban en otro directorio mucho más arriba en el árbol de archivos. Los direcotrios types y utils eran para guardar las declaraciones de tipos de TypeScript y funciones a utilizar dentro de los otros directorios respectivamente. El archivo `index.tsx` tenía la única responsabilidad de cargar cada componente de manera On-Demand para llamarlos desde el Router.
 
@@ -204,6 +107,8 @@ La estructura anterior de cada modulo seguía un patrón simple. En el directori
 El trabajo del estudiante fue llevar esta migración hasta completarla en 2 meses de trabajo, separando las responsabilidades de cada archivo para seguir la nueva estructura que era mucho más amigable para realizar extensiones y correcciones, ya que cada parte de la funcionalidad se implementaba en lugares separados. Antes habían declaraciones de tipos y funciones de manejo de estado dentro de `components`. En las primeras 2 semanas el estudiante se enfocó en familiarizase con la librería Redux y TypeScript, tecnologías que no había ocupado antes. Cada módulo le tomaba al rededor de 4 o 5 días en reescribirlo. Durante las siguientes semanas este tiempo se vería reducido a 2 o 3 días por módulo. A mitades de Febrero el 90% del front estaba migrado a la nueva estructura.
 
 Una vez finalizada la refactorización de los principales módulos del EMER 2.0, al estudiante se le encomendó implementar una maqueta funcional en el front para un nuevo módulo de gestión de contratos, se le fue entragado un mockup #footnote("Mockup: Una representación visual similar a un prototipo que simula el aspecto final de un diseño") y un documento de especificación sobre el nuevo módulo. Debía tener 3 tabs, una para gestionar los datos generales del contrato, una tab para gestionar los periodos del contrato y condiciones asociados a este, y por ultimo una tab de anexos. En la tab de periodos también debía haber un submódulo de bloques horarios para manejar el cóbro de energía por bloques horarios, siguiendo las condiciones descritas por un formulario dinámico. Siguiendo la estructura de manejo de estados con Redux, la maqueta quedó con la siguiente estructura de archivos, preparada para su integración con el backend que estaría listo semanas después:
+
+#pagebreak()
 
 ```
 .
@@ -272,22 +177,6 @@ La decisión del estudiante de crear el script con JavaScript fue principalmente
 
 = Reflexión
 
-#guia(visible: mostrar_guias)[
-- Describir los obstáculos encontrados, cómo fue el proceso y período de práctica y qué cambios no previstos ocurrieron.
-- Describir el proceso de inserción en la empresa y la interacción que pudo alcanzar con el equipo.
-- Explicar si fue proactivo en la realización de las tareas asignadas en el lugar de práctica y de si fue puntual en su asistencia al lugar de trabajo.
-- Mencionar si enfrentó algún dilema ético, describiendo la situación y cómo se resolvió.
-- Indicar y explicar qué cursos de la carrera fueron un aporte al momento de realizar la práctica, y cómo estos le ayudaron.
-- Dar argumentos acerca de qué habilidades o conocimientos le faltaron para desempeñarse de manera adecuada en la práctica. Asimismo, explicar qué aspectos del ambiente laboral ayudaron (favorecieron) para compensar las debilidades que como practicante traía.
-- Describir los nuevos conocimientos adquiridos en la práctica profesional.
-
-*_Se solicita que este apartado pueda señalar su autopercepción del desempeño y las habilidades profesionales que implemento, tales como la ética, la comunicación oral y escrita, trabajo en equipo, entre otras. Respondiendo preguntas tales como_*:
-¿qué aspecto de tu actuar en relación con el respeto y la responsabilidad, durante la experiencia de práctica destacarías?
-¿En qué sentido su compromiso ético se vio fortalecido a partir de la experiencia de la práctica?
-¿Cuáles son los principales desafíos que te planteas para el futuro en relación con lo técnico y personal?
-
-(extensión sugerida: 1 a 3 páginas)]
-
 Durante el transcurso de la práctica, el estudiante experimentó el trabajar en un equipo de desarrolladores profiesionales en una empresa consolidada y con procesos burocráticos, como lo fue instalar software en el computador empresarial para trabajar. Para hacerlo, se debe iniciar un proceso por la Mesa de Ayuda Integral de empresas Lipigas, dado que nadie tiene permisos de administrador en los computadores de la empresa. Cada vez que se requiere instalar un software hay que sacar un ticket virtual por la plataforma, esperar aprobación y que un técnico se conecte de manera remota al computador para tipear la clave de administrador en el computador. Este proceso hizo que los primeros 3 días de trabajo el estudiante no pudiera hacer nada más que ver por GitHub cómo estaban estructurados los repositorios y leer un poco de la documentación.
 
 Gracias a la modalidad híbrida de trabajo, el estudiante pudo convivir con el equipo de desarrolladores de manera presencial en una oficina. La costumbre de todas las mañanas era completar la planilla con la planificación y salir a comprar desayuno a un kiosco cercano, tiempos de convivencia que acercaron al estudiante con el equipo y ayudaba a crear un ambiente de trabajo en equipo grato.
@@ -307,13 +196,6 @@ En cuanto a cómo ayudó la universidad en el desempeño del estudiante en su pr
 - CC5002 - Desarrollo de Aplicaciones Web, un curso electivo en donde se aprenden todas las bases de lo que es el desarrollo de aplicaciones web de manera agnóstica a las tecnologías. El estudiante considera que si no fuese por este ramo electivo, probablemente no hubiese conseguido el puesto de practicante en primer lugar y señala que estos acercamientos a las áreas de trabajo de ciencias de la computación son muy importantes a la hora de buscar práctica profesional.
 
 = Conclusiones
-
-#guia(visible: mostrar_guias)[
-En esta sección se deberá retomar y confirmar de manera sintética los aspectos centrales de la práctica profesional, y dar un cierre a lo expuesto en el informe; se incluye:
-- Determinar si se lograron los objetivos planteados.
-- Plantear aspectos de mejora a su desempeño y a la solución creada (proyección).
-
-(extensión sugerida: 0.5 a 1 página)]
 
 Recapitulando, el objetivo principal propuesto de la práctica fue refactorizar módulos obsoletos del frontend para eliminar el uso de Context API en el proyecto, objetivo que fue completado con éxito dentro del periodo de práctica. Quedaron residuos de uso de Context API asociados a componentes demasiado complejos para reescribir en el periodo de práctica, pero más de un 90% del proyecto quedó implementado usando React Redux. También se presentó la oportunidad de crear nuevos componentes para la empresa, que fue un logro extra de la práctica. 
 
